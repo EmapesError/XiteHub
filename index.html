@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeZone - Home</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #1c1c1c;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 32px;
+            color: #b30000; /* Dark Red */
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .anime-card {
+            width: 180px; /* Adjusted width for poster size */
+            margin: 15px;
+            text-align: center;
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .anime-card img {
+            width: 100%;
+            height: 320px; /* Adjusted height for 9:16 ratio */
+            object-fit: cover; /* Ensures image fits perfectly */
+            display: block;
+        }
+
+        .anime-card h3 {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(179, 0, 0, 0.5); /* Dark Red hover */
+        }
+
+        .anime-card:hover img {
+            filter: brightness(1.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1c1c;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AnimeZone</div>
+    </header>
+
+    <section class="gallery">
+        <!-- Anime Thumbnails with Titles in Poster Style -->
+        <a href="anime1.html" class="anime-card">
+            <img src="images/anime1-thumbnail.jpg" alt="Anime 1">
+            <h3>Anime Title 1</h3>
+        </a>
+        <a href="anime2.html" class="anime-card">
+            <img src="images/anime2-thumbnail.jpg" alt="Anime 2">
+            <h3>Anime Title 2</h3>
+        </a>
+        <a href="anime3.html" class="anime-card">
+            <img src="images/anime3-thumbnail.jpg" alt="Anime 3">
+            <h3>Anime Title 3</h3>
+        </a>
+        <a href="anime4.html" class="anime-card">
+            <img src="images/anime4-thumbnail.jpg" alt="Anime 4">
+            <h3>Anime Title 4</h3>
+        </a>
+        <a href="anime5.html" class="anime-card">
+            <img src="images/anime5-thumbnail.jpg" alt="Anime 5">
+            <h3>Anime Title 5</h3>
+        </a>
+        <a href="anime6.html" class="anime-card">
+            <img src="images/anime6-thumbnail.jpg" alt="Anime 6">
+            <h3>Anime Title 6</h3>
+        </a>
+        <a href="anime7.html" class="anime-card">
+            <img src="images/anime7-thumbnail.jpg" alt="Anime 7">
+            <h3>Anime Title 7</h3>
+        </a>
+        <a href="anime8.html" class="anime-card">
+            <img src="images/anime8-thumbnail.jpg" alt="Anime 8">
+            <h3>Anime Title 8</h3>
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AnimeZone. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

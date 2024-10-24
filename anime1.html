@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeZone - Watch Anime</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #1c1c1c;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 32px;
+            color: #b30000; /* Dark Red */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-player {
+            width: 100%;
+            max-width: 1280px; /* YouTube-like width */
+            height: 720px; /* 16:9 aspect ratio */
+            background-color: #000; /* Removed red background */
+            margin-bottom: 20px;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.5s ease; /* Smooth animation for episode change */
+        }
+
+        .season-list {
+            margin-bottom: 20px;
+        }
+
+        .season {
+            background-color: #b30000;
+            color: #ffffff;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .season:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(255, 26, 26, 0.5);
+        }
+
+        .episode-list {
+            max-width: 800px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .episode {
+            background-color: #b30000;
+            color: #ffffff;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .episode:hover {
+            background-color: #ff1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(255, 26, 26, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1c1c;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">AnimeZone</div>
+    </header>
+
+    <div class="container">
+        <!-- Video Player -->
+        <div class="video-player">
+            <video id="animeVideo" controls>
+                <source src="season1-episode1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Season List -->
+        <div class="season-list">
+            <div class="season" data-season="1">Season 1</div>
+            <div class="season" data-season="2">Season 2</div>
+        </div>
+
+        <!-- Episode List -->
+        <div class="episode-list" id="episodeList">
+            <!-- Episodes will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AnimeZone. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const episodesData = {
+            1: [
+                { episode: '1', video: 'season1-episode1.mp4' },
+                { episode: '2', video: 'season1-episode2.mp4' },
+                { episode: '3', video: 'season1-episode3.mp4' },
+                { episode: '4', video: 'season1-episode4.mp4' }
+            ],
+            2: [
+                { episode: '1', video: 'season2-episode1.mp4' },
+                { episode: '2', video: 'season2-episode2.mp4' },
+                { episode: '3', video: 'season2-episode3.mp4' },
+                { episode: '4', video: 'season2-episode4.mp4' }
+            ]
+        };
+
+        const videoPlayer = document.getElementById('animeVideo');
+        const episodeList = document.getElementById('episodeList');
+        const seasons = document.querySelectorAll('.season');
+
+        // Function to load episodes based on selected season
+        function loadEpisodes(season) {
+            episodeList.innerHTML = ''; // Clear previous episodes
+            const episodes = episodesData[season];
+            episodes.forEach(ep => {
+                const episodeDiv = document.createElement('div');
+                episodeDiv.classList.add('episode');
+                episodeDiv.textContent = 'Episode ' + ep.episode;
+                episodeDiv.dataset.video = ep.video;
+                episodeDiv.addEventListener('click', function() {
+                    // Add smooth transition when changing episodes
+                    videoPlayer.style.opacity = 0;
+                    setTimeout(() => {
+                        videoPlayer.src = this.dataset.video;
+                        videoPlayer.play();
+                        videoPlayer.style.opacity = 1;
+                    }, 500);
+                });
+                episodeList.appendChild(episodeDiv);
+            });
+        }
+
+        // Load Season 1 by default
+        loadEpisodes(1);
+
+        // Add event listeners for season selection
+        seasons.forEach(season => {
+            season.addEventListener('click', function() {
+                const seasonNumber = this.dataset.season;
+                loadEpisodes(seasonNumber);
+            });
+        });
+    </script>
+
+</body>
+</html>
